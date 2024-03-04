@@ -8,8 +8,14 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
-      #./homemngr.nix    
-];
+    ];
+
+nix = {
+  package = pkgs.nixUnstable;
+  extraOptions = ''
+    experimental-features = nix-command flakes
+  '';
+};
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
